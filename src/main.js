@@ -8,18 +8,25 @@ import VueRouter from 'vue-router'
 
 // 通过 Vue.use() 明确地安装路由功能
 Vue.use(VueRouter)
+import app from './APP.vue'
 
 // 按需导入 mint-ui
 import { Header } from 'mint-ui'
-
-//  导入 MUI
-import '../lib/mui/css/mui.css'
+import { Swipe, SwipeItem } from 'mint-ui';
 
 Vue.component(Header.name, Header)
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
 
-import app from './APP.vue'
+// 导入 MUI
+import './lib/mui/css/mui.css'
+import './lib/mui/css/icons-extra.css'
 
-console.log('ok');
+
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
+
+
 
 var vm = new Vue({
     el: '#app',
@@ -27,4 +34,5 @@ var vm = new Vue({
         return createElement(app)
     },
 
+    router: router,
 })
