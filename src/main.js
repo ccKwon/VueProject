@@ -12,19 +12,32 @@ import app from './APP.vue'
 
 // 按需导入 mint-ui
 import { Header } from 'mint-ui'
-import { Swipe, SwipeItem } from 'mint-ui';
+import { Swipe, SwipeItem, Button } from 'mint-ui';
 
 Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button);
 
 // 导入 MUI
 import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'
 
-
+// 导入 Vue-Resource
 import VueResource from 'vue-resource'
+// 安装 Vue-Resource
 Vue.use(VueResource)
+
+import 'moment'
+import moment from 'moment'
+
+// 定义全局过滤器
+Vue.filter('dateFormat', function(dataStr, parent = "YYYY-MM-DD HH:mm:ss"){
+   return moment(dataStr).format(parent)
+})
+
+
+Vue.http.options.root = "http://www.liulongbin.top:3005"
 
 
 
