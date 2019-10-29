@@ -2,8 +2,8 @@
     <div>
         <h3>发表评论</h3>
         <hr>
-        <textarea placeholder="请输入要吐槽的内容(最多120字)" maxlength="120"></textarea>
-        <mt-button type="primary" size="large">发表评论</mt-button>
+        <textarea v-model="msg" placeholder="请输入要吐槽的内容(最多120字)" maxlength="120"></textarea>
+        <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
 
         <div class="ctm-list">
             <span>全部评论</span>
@@ -41,7 +41,9 @@
         data() {
             return {
                 pageindex: 1, //默认展示第一页数据
-                comments: []
+                comments: [],
+
+                msg: ''
             }
         },
 
@@ -63,6 +65,24 @@
             getmore() {
                 this.pageindex++;
                 this.getComments()
+            },
+
+            postComment() {
+                if (this.msg.trim().length === 0) {
+                    return Toast('评论不能为空')
+                }
+
+
+                this.$http.post('api/postcomment/' + this.id, { content: this.msg.trim() })
+                .then(function(result) {
+                    if (result.body.status === 0) {
+                        // 拼接一个评论对象
+                        var cmt = { user_name: '匿名用户', add_time: Date.now(), content: this.msg.trim() }
+
+                        this.comments.push(cmt)
+                        this.msg = ''
+                    }
+                })
             }
         },
 

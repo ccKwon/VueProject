@@ -6,6 +6,8 @@ import router from './router.js'
 // 导入 vue-router 包
 import VueRouter from 'vue-router'
 
+
+
 // 通过 Vue.use() 明确地安装路由功能
 Vue.use(VueRouter)
 import app from './APP.vue'
@@ -22,6 +24,7 @@ Vue.component(Button.name, Button);
 // 导入 MUI
 import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'
+// import './lib/mui/css/mui.min.css'
 
 // 导入 Vue-Resource
 import VueResource from 'vue-resource'
@@ -36,8 +39,9 @@ Vue.filter('dateFormat', function(dataStr, parent = "YYYY-MM-DD HH:mm:ss"){
    return moment(dataStr).format(parent)
 })
 
-
+// 全局设置请求的根路径
 Vue.http.options.root = "http://www.liulongbin.top:3005"
+Vue.http.options.emulateJSON = "true"
 
 
 
