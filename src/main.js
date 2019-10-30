@@ -12,14 +12,20 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 import app from './APP.vue'
 
-// 按需导入 mint-ui
-import { Header } from 'mint-ui'
-import { Swipe, SwipeItem, Button } from 'mint-ui';
+import MinUi from 'mint-ui'
+Vue.use(MinUi)
+import 'mint-ui/lib/style.css'
 
-Vue.component(Header.name, Header)
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(Button.name, Button);
+// 按需导入 mint-ui
+// import { Header } from 'mint-ui'
+// import { Swipe, SwipeItem, Button, Lazyload } from 'mint-ui';
+// import './'
+// Vue.use(Lazyload);
+
+// Vue.component(Header.name, Header)
+// Vue.component(Swipe.name, Swipe);
+// Vue.component(SwipeItem.name, SwipeItem);
+// Vue.component(Button.name, Button);
 
 // 导入 MUI
 import './lib/mui/css/mui.css'

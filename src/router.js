@@ -6,6 +6,7 @@ import SearchPage from './components/tabbar/Search.vue'
 import NewsListPage from './components/tabbar/NewsList.vue'
 import NewsInfoPage from './components/tabbar/NewsInfo.vue'
 import PhotosList from './components/photos/PhotosList.vue'
+import Photoinfo from './components/photos/Photoinfo.vue'
 var router = new VueRouter({
     routes: [
         { path: '/', redirect: '/home' },
@@ -15,7 +16,8 @@ var router = new VueRouter({
         { path: '/search', component: ShopcartPage },
         { path: '/home/newslist', component: NewsListPage },
         { path: '/home/newslist/newsinfo/:id', component: NewsInfoPage },
-        { path: '/home/photoslist', component:PhotosList },
+        { path: '/home/photoslist', component: PhotosList },
+        { path: '/home/photoslist/photoinfo/:id', component: Photoinfo },
     ],
     linkActiveClass: 'mui-active'   //覆盖默认的路由高亮的类 router-link-active
 })
