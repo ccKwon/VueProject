@@ -54,7 +54,6 @@
                         if (result.body.status === 0) {
                             // 每当获取新评论时候 不把老数据清空 而是将新数据与就数据进行拼接
                             this.comments = this.comments.concat(result.body.message);
-                            console.log(result.body);
                         } else {
                             Toast('获取评论列表失败')
                         }

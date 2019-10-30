@@ -40,6 +40,12 @@ Vue.use(VueResource)
 import 'moment'
 import moment from 'moment'
 
+// 导入 Vue_Preview 插件
+import VuePreview from 'vue-preview'
+
+// defalut install
+Vue.use(VuePreview)
+
 // 定义全局过滤器
 Vue.filter('dateFormat', function(dataStr, parent = "YYYY-MM-DD HH:mm:ss"){
    return moment(dataStr).format(parent)

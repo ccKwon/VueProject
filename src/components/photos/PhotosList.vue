@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-
+        <hr>
 
         <ul class="photo_list">
             <router-link v-for="item in list" :key="item.id" :to="'/home/photoslist/photoinfo/' + item.id" tag="li">
@@ -89,6 +89,10 @@
 <style lang="scss" scope>
     * {
         touch-action: none;
+    }
+
+    hr {
+        margin: 0;
     }
 
     .photo_list {
