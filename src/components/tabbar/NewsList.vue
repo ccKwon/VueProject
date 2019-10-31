@@ -48,7 +48,7 @@
     }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
     .mui-table-view {
         li {
             h1 {

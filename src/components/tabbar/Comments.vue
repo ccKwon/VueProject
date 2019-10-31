@@ -96,7 +96,7 @@
 </script>
 
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
     hr {
         border: none;
         border-top: 1px solid gray;

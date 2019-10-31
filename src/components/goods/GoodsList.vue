@@ -135,7 +135,7 @@
 
 
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
     .goods-list {
         display: flex;
         flex-wrap: wrap;

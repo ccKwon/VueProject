@@ -59,7 +59,7 @@
 </script>
 
 
-<style <style lang="scss" scope>
+<style <style lang="scss" scoped>
     .newsinfo-container {
         padding: 0 10px;
 

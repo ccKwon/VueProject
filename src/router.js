@@ -9,6 +9,8 @@ import PhotosList from './components/photos/PhotosList.vue'
 import Photoinfo from './components/photos/Photoinfo.vue'
 import GoodsList from './components/goods/GoodsList.vue'
 import GoodsInfo from './components/goods/GoodsInfo.vue'
+import GoodDesc from './components/goods/GoodsDesc.vue'
+import GoodComments from './components/goods/GoodComments.vue'
 var router = new VueRouter({
     routes: [
         { path: '/', redirect: '/home' },
@@ -22,6 +24,8 @@ var router = new VueRouter({
         { path: '/home/photoslist/photoinfo/:id', component: Photoinfo },
         { path: '/home/goodslist', component: GoodsList },
         { path: '/home/goodslist/goodinfo/:id', component: GoodsInfo },
+        { path: '/home/goodslist/goodinfo/gooddesc/:id', component: GoodDesc, name: 'gooddesc'},
+        { path: '/home/goodslist/goodinfo/goodcomments/:id', component: GoodComments, name: 'goodcomments'},
     ],
     linkActiveClass: 'mui-active'   //覆盖默认的路由高亮的类 router-link-active
 })

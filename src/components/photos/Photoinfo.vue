@@ -84,7 +84,7 @@
     }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
     .photoinfo-container {
         padding: 10px;
 
