@@ -16,21 +16,55 @@ import MinUi from 'mint-ui'
 Vue.use(MinUi)
 import 'mint-ui/lib/style.css'
 
-// 按需导入 mint-ui
-// import { Header } from 'mint-ui'
-// import { Swipe, SwipeItem, Button, Lazyload } from 'mint-ui';
-// import './'
-// Vue.use(Lazyload);
-
-// Vue.component(Header.name, Header)
-// Vue.component(Swipe.name, Swipe);
-// Vue.component(SwipeItem.name, SwipeItem);
-// Vue.component(Button.name, Button);
-
 // 导入 MUI
 import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'
 // import './lib/mui/css/mui.min.css'
+
+// 导入 vuex 
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+var store = new Vuex.store({
+    state: {
+      cart: []  
+    },
+
+    mutations: {
+        addToCart(state, goodsinfo) {
+
+            var flag = false;
+            // 如果购物车中有这个商品 则只增加数量
+            state.cart.some(item => {
+                if(item.id == goodsinfo.id) {
+                    item.count += parseInt(goodsinfo.count);
+                    flag = true;
+                    return true;
+                }
+            })
+
+            if( !flag ) {
+                state.cart.push(goodsinfo);
+            }
+
+
+        }
+    },
+
+
+    getters: {  //类似于 computed
+        getAllCount(state) {
+            var sum = 0;
+            state.cart.forEach(goods => {
+                sum += goods.count;
+            });
+            return sum;
+        }
+    },
+})
+
+
 
 // 导入 Vue-Resource
 import VueResource from 'vue-resource'
@@ -64,4 +98,6 @@ var vm = new Vue({
     },
 
     router: router,
+
+    store:store
 })

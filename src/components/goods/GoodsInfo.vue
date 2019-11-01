@@ -3,7 +3,7 @@
 
 
         <transition @before-enter="BeforeEnter" @enter="Enter" @after-enter="AfterEnter">
-            <div v-show="ballflag" class="ball" ref = "ball"></div>
+            <div v-show="ballflag" class="ball" ref="ball"></div>
         </transition>
 
 
@@ -28,7 +28,7 @@
                             销售价：<span class="nowprice">￥{{ goodsinfo.sell_price }}</span>
                         </p>
 
-                        <p>购买数量：<numbox :max="goodsinfo.stock_quantity" @getcount = "getNumberCount"></numbox>
+                        <p>购买数量：<numbox :max="goodsinfo.stock_quantity" @getcount="getNumberCount"></numbox>
                         </p>
                         <p>
                             <mt-button type="primary" size="small">立即购买</mt-button>
@@ -75,9 +75,9 @@
         data() {
             return {
                 id: this.$route.params.id,
-                goodsbanner: [],    // 保存获取的轮播图图片数据
-                goodsinfo: [],      // 保存获取的商品详情信息数据
-                ballflag: false,    // 控制小球隐藏显示的标识符
+                goodsbanner: [], // 保存获取的轮播图图片数据
+                goodsinfo: [], // 保存获取的商品详情信息数据
+                ballflag: false, // 控制小球隐藏显示的标识符
                 NumberCount: 1
             }
         },
@@ -142,6 +142,16 @@
 
             addToCart() {
                 this.ballflag = !this.ballflag;
+
+                var goodsinfo = {
+                    id: this.id,
+                    count: this.NumberCount,
+                    price: this.goodsinfo.sell_price,
+                    selected: true
+                }
+
+
+                this.$store.commit("addToCart", goodsinfo)
             },
 
             BeforeEnter(el) {
