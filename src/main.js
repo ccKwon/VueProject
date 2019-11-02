@@ -6,7 +6,7 @@ import router from './router.js'
 // 导入 vue-router 包
 import VueRouter from 'vue-router'
 
-
+import './lib/animate.css'
 
 // 通过 Vue.use() 明确地安装路由功能
 Vue.use(VueRouter)
@@ -26,9 +26,11 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-var store = new Vuex.store({
+var cart = JSON.parse(localStorage.getItem('cart') || '[]')
+
+var store = new Vuex.Store({
     state: {
-      cart: []  
+      cart: cart  
     },
 
     mutations: {
@@ -48,8 +50,40 @@ var store = new Vuex.store({
                 state.cart.push(goodsinfo);
             }
 
+            localStorage.setItem('cart', JSON.stringify(state.cart))
+        },
+
+        updateGoodscounts(state, goodsinfo) {
+            state.cart.some(item => {
+                if( item.id == goodsinfo.id) {
+                    item.count = parseInt(goodsinfo.count);
+                    return true;
+                }
+            })
+
+            localStorage.setItem('cart', JSON.stringify(state.cart))
+        },
+
+        removegood(state, id) {
+            state.cart.some((item, index) => {
+                if(item.id == id){
+                    state.cart.splice(index, 1);
+                    return true;
+                }
+            })
+            localStorage.setItem('cart', JSON.stringify(state.cart));
+        },
+
+        updateSelected(state, selectedinfo) {
+            state.cart.some(item => {
+                if(item.id == selectedinfo.id){
+                    item.selected = selectedinfo.selected
+                }
+            })
+            localStorage.setItem('cart', JSON.stringify(state.cart));
 
         }
+
     },
 
 
@@ -59,6 +93,41 @@ var store = new Vuex.store({
             state.cart.forEach(goods => {
                 sum += goods.count;
             });
+            return sum;
+        },
+
+
+        getGoodsCount(state) {
+            var count = { };
+            state.cart.forEach(item => {
+                count[item.id] = item.count;
+            })
+
+            return count;
+        },
+
+        isSelected(state) {
+            var selected = { };
+            state.cart.forEach(item => {
+                selected[item.id] = item.selected;
+            })
+
+            return selected;
+        },
+
+        getGoodsAmount(state) {
+            var sum = {
+                count: 0,
+                amount: 0
+            }
+
+            state.cart.forEach(item => {
+                if (item.selected) {
+                    sum.count += item.count;
+                    sum.amount += item.count * item.price;
+                }
+            })
+
             return sum;
         }
     },

@@ -148,10 +148,9 @@
                     count: this.NumberCount,
                     price: this.goodsinfo.sell_price,
                     selected: true
-                }
+                };
 
-
-                this.$store.commit("addToCart", goodsinfo)
+                this.$store.commit("addToCart", goodsinfo);
             },
 
             BeforeEnter(el) {

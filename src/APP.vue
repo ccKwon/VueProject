@@ -1,6 +1,10 @@
 <template>
     <div class="div-container">
-        <mt-header fixed title="Vue项目"></mt-header>
+        <mt-header fixed title="Vue项目">
+            <span slot="left" @click="back" v-show="flag">
+                <mt-button icon="back">返回</mt-button>
+            </span>
+        </mt-header>
 
         <transition>
             <router-view></router-view>
@@ -19,7 +23,8 @@
             </router-link>
             <router-link class="mui-tab-item1" to="/cart">
                 <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-                    <span class="mui-badge" id="badge"> {{ $store.getters.getAllCount }}</span>
+                    <span id="badge" :class="[{'animated heartBeat' : this.cssflag},' mui-badge']">
+                        {{ $store.getters.getAllCount }}</span>
                 </span>
                 <span class="mui-tab-label">购物车</span>
             </router-link>
@@ -34,14 +39,58 @@
 
 <script>
 
+    export default {
+        data() {
+            return {
+                cssflag: false,
+                flag: false
+            }
+        },
+
+        created() {
+            this.flag = this.$route.path === '/home' ? false : true;
+        },
+
+        methods: {
+            back() {
+                this.$router.go(-1)
+            },
+
+            setcssflag() {
+                this.cssflag = true;
+                // this.cssflag = false;
+            }
+        },
+
+        computed: {
+            count() {
+                return this.$store.getters.getAllCount
+            }
+        },
+
+
+        watch: {
+            count: function () {
+                this.setcssflag();
+            },
+
+            '$route.path': function (newval) {
+                if (newval === '/home') {
+                    this.flag = false;
+                } else {
+                    this.flag = true;
+                }
+            }
+        },
+    }
 </script>
 
 
 <style lang="scss" scoped>
+    .mint-header {
+        z-index: 99;
+    }
 
-.mint-header {
-    z-index: 99;
-}
     .div-container {
         padding-top: 40px;
         overflow-x: hidden;

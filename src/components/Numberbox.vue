@@ -13,7 +13,7 @@
 
         data() {
             return {
-                max: ''
+                maxNum: ''
             }
         },
 
@@ -26,8 +26,8 @@
         methods: {
             CountChange() {
                 // 当文本框改变时 通过调用时间立即把最新数据传给父组件
-                if (this.$refs.numbox.value > this.max) {
-                    this.$emit("getcount", this.max);
+                if (this.$refs.numbox.value > this.maxNum) {
+                    this.$emit("getcount", this.maxNum);
                 }else {
                     this.$emit("getcount", parseInt(this.$refs.numbox.value));
                 }
@@ -39,7 +39,7 @@
         watch: {
             max: function (newVal, oldVal) {
                 mui('.mui-numbox').numbox().setOption('max', newVal);
-                this.max = newVal;
+                this.maxNum = newVal;
             }
         },
     }
